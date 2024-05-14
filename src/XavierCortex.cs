@@ -4,7 +4,7 @@ public struct PlanSearchResult<TAction, TState, TValue>
 {
     public TAction NextAction;
     public TState PredictedState;
-    // terminology may be wrong here?
+    // terminology may be wrong here? "evaluated value"?
     public TValue EstimatedValue;
 }
 public class XavierCortex<TGoal, TState, TAction, TValue>
@@ -59,6 +59,13 @@ public class XavierCortex<TGoal, TState, TAction, TValue>
         return proposedActions;
     }
 
+    // Arxiv 2310.00194 - Algorithm 2, Search Loop
+    // Tree search with a depth of L layers, with B branches at each layer l. For each branch, a proposed action
+    // is sampled, and the Predictor predicts the next state ˜x. This process continues recursively until the terminal layer L, at which point
+    // the value vl=L of the terminal states is estimated by the Evaluator. The values are backpropagated to their parent states in the first
+    // layer, and the action that leads to the most valuable state is selected. In our implementation, we accelerate this process by caching the
+    // actions and predicted states from deeper search layers and then reusing them in subsequent searches. We also employ the Orchestrator
+    // to prematurely terminate search if the goal state is achieved.
     private async Task<PlanSearchResult<TAction, TState, TValue>> Search(int currentLayer, int maxDepth,
                                                                         int proposedActionCount, TState currentState,
                                                                         TGoal currentGoal)
@@ -115,10 +122,15 @@ public class XavierCortex<TGoal, TState, TAction, TValue>
         };
     }
 
+    // Arxiv 2310.00194 - Algorithm 3, LLM-PFC
+    // LLM-PFC takes a state x and a goal y and generates a plan P , a series of actions with a maximum length of
+    // T . The TaskDecomposer first generates a set of subgoals Z. The agent then pursues each individual subgoal z in sequence, followed by
+    // the final goal y. At each time step, Search is called to generate an action and a predicted next-state. Actions are added to the plan until
+    // the Orchestrator determines that the goal has been achieved, or the plan reaches the maximum length T .
     public async Task<IEnumerable<TAction>> GeneratePlan(TState state,
                                                          TGoal goal,
                                                          int maxPlanLength,
-                                                         int maxLayerDepth,
+                                                         int maxSearchDepth,
                                                          int proposedActionCount)
     {
         // Initialize plan
@@ -137,7 +149,7 @@ public class XavierCortex<TGoal, TState, TAction, TValue>
             while (!goalAchieved && plan.Count < maxPlanLength)
             {
                 // Search for plan
-                var result = await Search(0, maxLayerDepth, proposedActionCount, state, currentGoal);
+                var result = await Search(0, maxSearchDepth, proposedActionCount, state, currentGoal);
                 // Update plan
                 plan.Add(result.NextAction);
                 // Update state
