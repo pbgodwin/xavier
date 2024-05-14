@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xavier", "src\Xavier.csproj", "{FEDF957A-CDCE-4DE4-B5BB-5E7CC7AABAFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{A21E3644-ADC9-4695-8A4A-5F0E7D479207}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xavier.Tests.TowerOfHanoi", "test\toh\Xavier.Tests.TowerOfHanoi.csproj", "{B6E5E7BB-BCA6-451F-B658-7667281D32E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEDF957A-CDCE-4DE4-B5BB-5E7CC7AABAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEDF957A-CDCE-4DE4-B5BB-5E7CC7AABAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEDF957A-CDCE-4DE4-B5BB-5E7CC7AABAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEDF957A-CDCE-4DE4-B5BB-5E7CC7AABAFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E5E7BB-BCA6-451F-B658-7667281D32E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E5E7BB-BCA6-451F-B658-7667281D32E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E5E7BB-BCA6-451F-B658-7667281D32E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E5E7BB-BCA6-451F-B658-7667281D32E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6E5E7BB-BCA6-451F-B658-7667281D32E0} = {A21E3644-ADC9-4695-8A4A-5F0E7D479207}
+	EndGlobalSection
+EndGlobal
