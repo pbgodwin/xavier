@@ -1,9 +1,6 @@
-using System;
+namespace Xavier;
 
-namespace Xavier
+public interface IPredictor<TState, TAction>
 {
-    public interface IPredictor<TState, TAction>
-    {
-        Task<TState> PredictNextState(TState currentState, TAction action);
-    }
+    Task<TState> PredictNextState(TState currentState, TAction action);
 }

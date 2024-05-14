@@ -1,9 +1,6 @@
-using System;
+namespace Xavier;
 
-namespace Xavier
+public interface ITaskDecomposer<TState, TGoal>
 {
-    public interface ITaskDecomposer<TState, TGoal>
-    {
-        Task<List<TGoal>> DecomposeTask(TState state, TGoal goal);
-    }
+    Task<List<TGoal>> DecomposeTask(TState state, TGoal goal);
 }

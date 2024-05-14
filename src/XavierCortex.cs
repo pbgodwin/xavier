@@ -1,4 +1,3 @@
-
 namespace Xavier;
 
 public struct PlanSearchResult<TAction, TState, TValue>
