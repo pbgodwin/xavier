@@ -79,7 +79,7 @@ public class XavierCortex<TGoal, TState, TAction, TValue>
         // Propose B actions
         var proposedActions = await ProposeAction(currentState, currentGoal, proposedActionCount);
 
-        // todo: this relies on proposedActions.Count() == proposedActionCount, maybe assert this?
+        // todo: this assumes proposedActions.Count() == proposedActionCount, maybe assert this?
         for (int i = 0; i < proposedActions.Count(); i++)
         {
             var currentAction = proposedActions.ElementAt(i);
