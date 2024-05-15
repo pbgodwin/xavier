@@ -192,6 +192,11 @@ public class TowerOfHanoiActor : IActor<TowerOfHanoiState, TowerOfHanoiGoal, Tow
 
             if (proposedActions.Count == actionCount)
             {
+                Console.WriteLine("[Actor] Proposed actions:");
+                foreach (var action in proposedActions)
+                {
+                    Console.WriteLine($"\t{action}");
+                }
                 return proposedActions;
             }
             else

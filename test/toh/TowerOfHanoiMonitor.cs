@@ -17,6 +17,14 @@ public class TowerOfHanoiMonitor : IMonitor<TowerOfHanoiState, TowerOfHanoiActio
     {
         Console.WriteLine("[Monitor] Assessing the validity of the Actor's proposed move...");
 
+        Console.WriteLine("[Monitor] Current State:");
+        Console.WriteLine($"\tA: {string.Join(", ", state.A)}");
+        Console.WriteLine($"\tB: {string.Join(", ", state.B)}");
+        Console.WriteLine($"\tC: {string.Join(", ", state.C)}");
+
+        var proposedAction = action.First();
+        Console.WriteLine($"[Monitor] Proposed Action: {proposedAction}");
+
         var moveValidityPrompt = $@"Consider the following puzzle problem:
             
             Problem description:
@@ -71,7 +79,7 @@ public class TowerOfHanoiMonitor : IMonitor<TowerOfHanoiState, TowerOfHanoiActio
             C = [{string.Join(", ", state.C)}]
 
             Proposed move:
-            {action}
+            {proposedAction}
         ";
 
         var chatRequest = new ChatRequest()

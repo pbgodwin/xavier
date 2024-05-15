@@ -15,7 +15,17 @@ public class TowerOfHanoiOrchestrator : IOrchestrator<TowerOfHanoiGoal, TowerOfH
 
     public async Task<bool> HasGoalBeenAchieved(TowerOfHanoiState predictedState, TowerOfHanoiGoal currentGoal)
     {
-        Console.WriteLine("Checking whether the predicted state of the proposed mood matches the current goal.");
+        Console.WriteLine("[Orchestrator] Checking whether the predicted state of the proposed move matches the current goal.");
+
+        Console.WriteLine("[Orchestrator] Predicted State:");
+        Console.WriteLine($"\tA: {string.Join(", ", predictedState.A)}");
+        Console.WriteLine($"\tB: {string.Join(", ", predictedState.B)}");
+        Console.WriteLine($"\tC: {string.Join(", ", predictedState.C)}");
+
+        Console.WriteLine("[Orchestrator] Current Goal:");
+        Console.WriteLine($"\tA: {string.Join(", ", currentGoal.A)}");
+        Console.WriteLine($"\tB: {string.Join(", ", currentGoal.B)}");
+        Console.WriteLine($"\tC: {string.Join(", ", currentGoal.C)}");
 
         var taskCoordinationPrompt = $@"Consider the following puzzle problem:
 	
@@ -102,12 +112,12 @@ public class TowerOfHanoiOrchestrator : IOrchestrator<TowerOfHanoiGoal, TowerOfH
 
             if (answer.Contains("yes") || answer.Contains("Yes"))
             {
-                Console.WriteLine("The predicted state of the proposed move matches the current goal.");
+                Console.WriteLine("[Orchestrator] The predicted state of the proposed move matches the current goal.");
                 return true;
             }
             else if (answer.Contains("no") || answer.Contains("No"))
             {
-                Console.WriteLine("The predicted state of the proposed move does not match the current goal.");
+                Console.WriteLine("[Orchestrator] The predicted state of the proposed move does not match the current goal.");
                 return false;
             }
 

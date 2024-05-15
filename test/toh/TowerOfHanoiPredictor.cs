@@ -15,6 +15,15 @@ public class TowerOfHanoiPredictor : IPredictor<TowerOfHanoiState, TowerOfHanoiA
 
     public async Task<TowerOfHanoiState> PredictNextState(TowerOfHanoiState currentState, TowerOfHanoiAction action)
     {
+        Console.WriteLine("[Predictor] Predicting the next state after applying the proposed action.");
+
+        Console.WriteLine("[Predictor] Current State:");
+        Console.WriteLine($"\tA: {string.Join(", ", currentState.A)}");
+        Console.WriteLine($"\tB: {string.Join(", ", currentState.B)}");
+        Console.WriteLine($"\tC: {string.Join(", ", currentState.C)}");
+
+        Console.WriteLine($"[Predictor] Proposed Action: {action}");
+
         var predictorPrompt = $@"Consider the following puzzle problem:
 
 			Problem description:
@@ -120,6 +129,10 @@ public class TowerOfHanoiPredictor : IPredictor<TowerOfHanoiState, TowerOfHanoiA
                         else if (parsedArrayCount == 2)
                         {
                             predictedState.C = parsedSubgoalPart.ToList();
+                            Console.WriteLine($"[Predictor] Predicted state: ");
+                            Console.WriteLine($"\tA = [{string.Join(", ", predictedState.A)}]");
+                            Console.WriteLine($"\tB = [{string.Join(", ", predictedState.B)}]");
+                            Console.WriteLine($"\tC = [{string.Join(", ", predictedState.C)}]");
                             return predictedState;
                         }
                     }

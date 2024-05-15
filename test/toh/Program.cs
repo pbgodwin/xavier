@@ -44,7 +44,7 @@ var monitor = new TowerOfHanoiMonitor(openaiApi);
 var predictor = new TowerOfHanoiPredictor(openaiApi);
 var orchestrator = new TowerOfHanoiOrchestrator(openaiApi);
 var taskDecomposer = new TowerOfHanoiTaskDecomposer(openaiApi);
-var evaluator = new TowerOfHanoiEvaluator();
+var evaluator = new TowerOfHanoiEvaluator(openaiApi);
 
 var agent = new XavierCortex<TowerOfHanoiGoal, TowerOfHanoiState, TowerOfHanoiAction, int>(
 actor, monitor, predictor, orchestrator, taskDecomposer, evaluator);
